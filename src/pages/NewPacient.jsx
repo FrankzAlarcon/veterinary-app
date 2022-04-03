@@ -1,10 +1,7 @@
 import React from 'react';
 import FormComponent from '../components/FormComponent';
-// import useCustomersValues from '../hooks/useCustomersValues';
 
 function NewPacient() {
-  // const { client } = useCustomersValues();
-  // console.log(client);
   return (
     <>
       <h1 className="text-center text-3xl md:text-5xl lg:text-6xl lg:mb-6 font-black">

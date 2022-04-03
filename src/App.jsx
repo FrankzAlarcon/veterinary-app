@@ -7,6 +7,7 @@ import PacientList from './pages/PacientList';
 import PatientData from './pages/PatientData';
 import Tasks from './pages/Tasks';
 import { CustomersProvider } from './context/CustomersProvider';
+import EditCustomer from './pages/EditCustomer';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
             <Route index element={<PacientList />} />
             <Route path="tasks" element={<Tasks />} />
             <Route path="new-patient" element={<NewPacient />} />
-            <Route path="edit-patient/:id" element={<NewPacient />} />
+            <Route path="edit-patient/:id" element={<EditCustomer />} />
             <Route path="patient/:id" element={<PatientData />} />
           </Route>
           <Route path="*" element={<NotFound />} />
