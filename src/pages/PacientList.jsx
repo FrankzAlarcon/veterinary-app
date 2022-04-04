@@ -6,7 +6,7 @@ import Alerta from '../components/Alerta';
 
 function PacientList() {
   const {
-    customers, inputData,
+    customers, inputData, setInputData,
   } = useCustomersValues();
   const filteredCustomers = customers
     .filter(({ customerName }) => customerName.toLowerCase().includes(inputData.toLowerCase()));
@@ -22,7 +22,7 @@ function PacientList() {
         {' '}
         <span className="text-indigo-600 font-bold">Pacientes y Citas</span>
       </p>
-      <Searcher />
+      <Searcher value={inputData} setValue={setInputData} placeholder="Busca a un paciente por su propietario" />
       {
         filteredCustomers.length === 0 ? (
           <Alerta type="alert">

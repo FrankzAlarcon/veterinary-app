@@ -1,18 +1,16 @@
 import React from 'react';
-import useCustomersValues from '../hooks/useCustomersValues';
 
-function Searcher() {
-  const { inputData, setInputData } = useCustomersValues();
+function Searcher({ value, setValue, placeholder }) {
   return (
     <div>
       <label htmlFor="searcher">
         <input
-          onChange={(e) => setInputData(e.target.value)}
-          className="w-full md:w-1/2 mx-auto block p-3 rounded-md border-2"
+          onChange={(e) => setValue(e.target.value)}
+          className="w-full lg:w-3/5 mx-auto block p-3 rounded-md border-2"
           id="searcher"
           type="text"
-          placeholder="Busca a un paciente por su propietario"
-          value={inputData}
+          placeholder={placeholder}
+          value={value}
         />
       </label>
     </div>
