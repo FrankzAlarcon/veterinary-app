@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout';
-import NewPacient from './pages/NewPacient';
+import NewPatient from './pages/NewPatient';
 import NotFound from './pages/NotFound';
 import PacientList from './pages/PacientList';
 import PatientData from './pages/PatientData';
@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<PacientList />} />
             <Route path="tasks" element={<Tasks />} />
-            <Route path="new-patient" element={<NewPacient />} />
+            <Route path="new-patient" element={<NewPatient />} />
             <Route path="edit-patient/:id" element={<EditCustomer />} />
             <Route path="patient/:id" element={<PatientData />} />
           </Route>

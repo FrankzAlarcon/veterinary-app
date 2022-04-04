@@ -52,7 +52,7 @@ function FormComponent({ customer, loading }) {
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: `Se ha editado al paciente: ${petName}`,
+        title: 'Se han guardado los cambios',
         showConfirmButton: false,
         timer: 1500,
       }).then(() => {

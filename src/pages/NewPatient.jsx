@@ -1,7 +1,7 @@
 import React from 'react';
 import FormComponent from '../components/FormComponent';
 
-function NewPacient() {
+function NewPatient() {
   return (
     <>
       <h1 className="text-center text-3xl md:text-5xl lg:text-6xl lg:mb-6 font-black">
@@ -19,4 +19,4 @@ function NewPacient() {
   );
 }
 
-export default NewPacient;
+export default NewPatient;
