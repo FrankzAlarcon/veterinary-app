@@ -46,9 +46,19 @@ function FormComponent({ customer, loading }) {
     }
     if (customer?.id) {
       // editar registro
-      const newCustomers = customers.map((customerData) => (customerData.id === customer.id
-        ? { id: customer.id, ...values } : customerData));
+      const newCustomer = { id: customer.id, ...values };
+      const newCustomers = customers.map((customerData) => (customerData.id === newCustomer.id
+        ? newCustomer : customerData));
       setCustomers(newCustomers);
+      // para practicar uso de dbjson y fetch
+      window.fetch(`${import.meta.env.VITE_DB_PATIENTS}/${newCustomer.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(newCustomer),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      }).then((response) => response.json());
+
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -60,7 +70,17 @@ function FormComponent({ customer, loading }) {
       });
     } else {
     // crea un nuevo paciente
-      setCustomers([...customers, { id: createId(), ...values }]);
+      // para practicar uso de dbjson y fecth
+      const newCustomer = { id: createId(), ...values };
+      setCustomers([...customers, newCustomer]);
+      window.fetch(`${import.meta.env.VITE_DB_PATIENTS}`, {
+        method: 'POST',
+        body: JSON.stringify(newCustomer),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((response) => response.json())
+        .catch((error) => console.log(error));
       Swal.fire({
         position: 'center',
         icon: 'success',

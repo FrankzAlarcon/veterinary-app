@@ -1,12 +1,7 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import CustomerDetails from '../components/CustomerDetails';
-import useCustomersValues from '../hooks/useCustomersValues';
 
 function PatientData() {
-  const { customers } = useCustomersValues();
-  const { id } = useParams();
-  const customer = customers.find((customerSaved) => customerSaved.id === id);
   return (
     <div>
       <h1 className="text-center text-3xl md:text-5xl lg:text-6xl lg:mb-6 font-black">
@@ -19,7 +14,7 @@ function PatientData() {
         {' '}
         <span className="text-indigo-600 font-bold">Pacientes y Administralos</span>
       </p>
-      <CustomerDetails customer={customer} />
+      <CustomerDetails />
     </div>
   );
 }

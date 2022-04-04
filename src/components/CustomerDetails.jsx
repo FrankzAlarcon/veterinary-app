@@ -1,12 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import useCustomersValues from '../hooks/useCustomersValues';
 
-function CustomerDetails({ customer }) {
+function CustomerDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { customers } = useCustomersValues();
+  const [customer, setCustomer] = useState({});
+
+  useEffect(() => {
+    // Para practicar fetch
+    const fetchCustomer = async () => {
+      const response = await window.fetch(`${import.meta.env.VITE_DB_PATIENTS}/${id}`);
+      const result = await response.json();
+      console.log(result);
+    };
+    fetchCustomer();
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(customer).length === 0) {
+      const customerToShow = customers.find((customerSaved) => customerSaved.id === id) ?? {};
+      setCustomer(customerToShow);
+    }
+  }, [customers]);
+
   const {
     petName, customerName, email, date, symptoms,
   } = customer;
+
   return (
     <div>
       <div className="md:text-xl lg:text-3xl">

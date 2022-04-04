@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Searcher from '../components/Searcher';
 import Todo from '../components/Todo';
 import useTodosValues from '../hooks/useTodosValues';
@@ -11,6 +11,18 @@ function Tasks() {
   const handleAddTodo = () => {
     setOpenModal(true);
   };
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await window.fetch(import.meta.env.VITE_DB_TASKS);
+        const result = await response.json();
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTasks();
+  }, [/** todos */]);
   return (
     <div>
       {openModal && <Modal setOpenModal={setOpenModal} />}
@@ -28,6 +40,15 @@ function Tasks() {
               Tareas y Cosas por hacer
             </span>
           </p>
+          <div className="none hidden mx-auto w-fit mx-auto lg:block">
+            <button
+              onClick={handleAddTodo}
+              className="bg-yellow-500 w-44 transition-colors hover:bg-yellow-600 rounded-md text-xl p-2 text-white uppercase font-bold"
+              type="button"
+            >
+              Añadir tarea
+            </button>
+          </div>
         </>
       ) : (
         <>

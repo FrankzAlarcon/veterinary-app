@@ -1,13 +1,37 @@
 import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 function Layout() {
   const { pathname } = useLocation();
+  const texts = {
+    '/': 'Lista de Pacientes',
+    'new-patient': 'Nuevo Paciente',
+    tasks: 'Mis Tareas',
+    'edit-patient': 'Editar Paciente',
+    patient: 'Ver Paciente',
+  };
+  const getTitle = () => {
+    let text = '';
+    Object.keys(texts).forEach((key) => {
+      if (pathname.includes(key)) {
+        text = texts[key];
+      }
+    });
+    return text;
+  };
   return (
     <div className="md:flex">
+      <Helmet>
+        <title>
+          App Veterinaria |
+          {' '}
+          {getTitle()}
+        </title>
+      </Helmet>
       <nav
         className="fixed w-full top-0 flex gap-x-2 justify-around text-center md:w-1/4 md:h-screen bg-indigo-600 py-5 px-2
-        md:flex-col md:static md:justify-start md:gap-y-10 md:items-center md:py-14 md:px-5"
+        md:flex-col md:static md:justify-start md:gap-y-10 md:items-center md:py-14 md:px-5 shadow-md"
       >
         <Link
           to="/"

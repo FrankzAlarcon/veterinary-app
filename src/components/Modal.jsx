@@ -8,14 +8,32 @@ function Modal({ setOpenModal }) {
   } = useTodosValues();
   const handleSaveTodo = () => {
     if (todoToEdit.id) {
+      // Editar todo
+      const todoUpdated = { id: todoToEdit.id, text: input };
       const newTodos = todos.map((todoData) => (todoData.id === todoToEdit.id
-        ? { id: todoToEdit.id, text: input } : todoData));
+        ? todoUpdated : todoData));
       setTodos(newTodos);
+      window.fetch(`${import.meta.env.VITE_DB_TASKS}/${todoToEdit.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(todoUpdated),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      }).then((response) => response.json());
       setTodoToEdit({});
       setInput('');
     } else {
-      const newTodos = [...todos, { id: createId(), text: input }];
-      setTodos(newTodos);
+      // Añadir todo
+      const newTodo = { id: createId(), text: input };
+      window.fetch(import.meta.env.VITE_DB_TASKS, {
+        method: 'POST',
+        body: JSON.stringify(newTodo),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      }).then((response) => response.json())
+        .catch((error) => console.log(error));
+      setTodos([...todos, newTodo]);
       setInput('');
     }
     setOpenModal(false);

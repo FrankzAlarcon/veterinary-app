@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2/dist/sweetalert2.all';
 import useTodosValues from '../hooks/useTodosValues';
 
 function Todo({ todo, setOpenModal }) {
@@ -8,7 +9,30 @@ function Todo({ todo, setOpenModal }) {
   } = useTodosValues();
   const handleDeleteTodo = () => {
     const newTodos = todos.filter((todoData) => todoData.id !== id);
-    setTodos(newTodos);
+    Swal.fire({
+      title: '¿Realmente quieres eliminar esta tarea?',
+      text: 'No podrás recuperarla',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminarlo!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setTodos(newTodos);
+        window.fetch(`${import.meta.env.VITE_DB_TASKS}/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-type': 'application/json',
+          },
+        });
+        Swal.fire(
+          'Eliminado!',
+          'La tarea a sido eliminada.',
+          'success',
+        );
+      }
+    });
   };
   const handleEditTodo = () => {
     setOpenModal(true);

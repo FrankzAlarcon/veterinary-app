@@ -1,0 +1,34 @@
+{
+  "patients": [
+    {
+      "id": "2flcengbx2cl1kuov2w",
+      "petName": "Fito",
+      "customerName": "Frankz",
+      "email": "leninalarcon@gmail.com",
+      "date": "2022-04-09",
+      "symptoms": "No come"
+    },
+    {
+      "id": "i8p5kptxrdl1kuzq71",
+      "petName": "Nikki",
+      "customerName": "Fanny",
+      "email": "fanny@correo.com",
+      "date": "2022-04-13",
+      "symptoms": "Solo duerme"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "2sj6dntr715l1kvo5jb",
+      "text": "Estudiar nodejs en platzi"
+    },
+    {
+      "id": "a3apg27au4il1kvogt2",
+      "text": "Realizar los proyectos del curso de udemy"
+    },
+    {
+      "id": "94hszi6zljll1kvop8u",
+      "text": "Realizar lo del juanjo"
+    }
+  ]
+}

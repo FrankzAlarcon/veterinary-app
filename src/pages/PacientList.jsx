@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useCustomersValues from '../hooks/useCustomersValues';
 import CustomerCard from '../components/CustomerCard';
 import Searcher from '../components/Searcher';
@@ -10,6 +10,20 @@ function PacientList() {
   } = useCustomersValues();
   const filteredCustomers = customers
     .filter(({ customerName }) => customerName.toLowerCase().includes(inputData.toLowerCase()));
+
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        const response = await window.fetch(import.meta.env.VITE_DB_PATIENTS);
+        const result = await response.json();
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCustomers();
+  }, []);
+
   return (
     <>
       <h1 className="text-center text-3xl md:text-5xl lg:text-6xl lg:mb-6 font-black">

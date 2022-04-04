@@ -30,6 +30,12 @@ function CustomerCard({ customer }) {
       if (result.isConfirmed) {
         const newCustomers = customers.filter((customerData) => customerData.id !== id);
         setCustomers(newCustomers);
+        window.fetch(`${import.meta.env.VITE_DB_PATIENTS}/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-type': 'application/json',
+          },
+        });
         Swal.fire(
           'Eliminado!',
           'El registro ha sido eliminado.',
