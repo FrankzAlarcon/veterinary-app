@@ -35,7 +35,7 @@ function CustomerCard({ customer }) {
           headers: {
             'Content-type': 'application/json',
           },
-        });
+        }).catch((error) => console.log(error));
         Swal.fire(
           'Eliminado!',
           'El registro ha sido eliminado.',

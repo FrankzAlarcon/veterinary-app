@@ -57,7 +57,8 @@ function FormComponent({ customer, loading }) {
         headers: {
           'Content-type': 'application/json',
         },
-      }).then((response) => response.json());
+      }).then((response) => response.json())
+        .catch((error) => console.log(error));
 
       Swal.fire({
         position: 'center',

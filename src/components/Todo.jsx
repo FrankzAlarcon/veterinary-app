@@ -25,7 +25,8 @@ function Todo({ todo, setOpenModal }) {
           headers: {
             'Content-type': 'application/json',
           },
-        });
+        }).then((respose) => respose.json())
+          .catch((error) => console.log(error));
         Swal.fire(
           'Eliminado!',
           'La tarea a sido eliminada.',

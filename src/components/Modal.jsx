@@ -19,7 +19,8 @@ function Modal({ setOpenModal }) {
         headers: {
           'Content-type': 'application/json',
         },
-      }).then((response) => response.json());
+      }).then((response) => response.json())
+        .catch((error) => console.log(error));
       setTodoToEdit({});
       setInput('');
     } else {
