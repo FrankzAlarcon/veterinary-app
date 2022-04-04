@@ -53,6 +53,7 @@ function Tasks() {
             </div>
             <div className="none hidden lg:block">
               <button
+                onClick={handleAddTodo}
                 className="bg-yellow-500 w-44 transition-colors hover:bg-yellow-600 rounded-md text-xl p-2 text-white uppercase font-bold"
                 type="button"
               >
@@ -63,7 +64,7 @@ function Tasks() {
         </>
       )}
       {filteredTodos.map((todo) => (
-        <Todo key={todo.id} text={todo.text} />
+        <Todo key={todo.id} todo={todo} setOpenModal={setOpenModal} />
       ))}
       <button
         onClick={handleAddTodo}

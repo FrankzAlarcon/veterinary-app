@@ -31,8 +31,8 @@ function CustomerCard({ customer }) {
         const newCustomers = customers.filter((customerData) => customerData.id !== id);
         setCustomers(newCustomers);
         Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Eliminado!',
+          'El registro ha sido eliminado.',
           'success',
         );
       }
